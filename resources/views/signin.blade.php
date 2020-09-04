@@ -29,8 +29,8 @@
 
     <div class="container">
         <div class="row">
-            <div class="col-md-4"></div>
-            <form action="{{ URL::to('/login') }}" name="signin" class="col-md-4" method="POST">
+            <div class="col-md-4 col-sm-2"></div>
+            <form action="{{ URL::to('/login') }}" name="signin" class="col-md-4 col-sm-8" method="POST">
                 @csrf
                 
                 @if(Session::has('registration'))

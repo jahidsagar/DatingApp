@@ -7,6 +7,11 @@
         .success{
             color: red;
         }
+        @media screen and (max-width: 995px) {
+            .right {
+                float: right;
+            }
+        }
     </style>
     <title>Welcome to Dating Site</title>
 </head>
@@ -32,8 +37,8 @@
                 ?>
                 <img src="storage\{{$link}}" class="img-thumbnail" width="200" height="200"
                     alt="please upload image">
-                <p>&nbsp;</p>
-                <div class="card" style="width: 18rem;">
+                {{-- <p>&nbsp;</p> --}}
+                <div class="card right" style="width: 18rem;">
                     <form action="{{ URL::to('/image') }}" method="post" enctype="multipart/form-data">
                         @csrf
                         <div class="form-group">
@@ -42,7 +47,7 @@
                             <button type="submit" class="btn btn-info navbar-btn">Submit</button>
                         </div>
                     </form>
-                    <ul class="list-group list-group-flush">
+                    <ul class="list-group list-group-flush ">
                         <li class="list-group-item"><b>Name: </b>{{ Auth::user()->name }}</li>
                         <li class="list-group-item"><b>Gender: </b>{{ Auth::user()->gender }}</li>
                         <li class="list-group-item"><b>Birth date: </b>{{ Auth::user()->dob }}</li>

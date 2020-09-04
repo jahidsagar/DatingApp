@@ -9,7 +9,7 @@
 <body>
     <div class="container-fluid">
         <div class="row">
-            @include('static.navbar');
+            @include('static.navbar')
         </div>
     </div>
     <div class="container">
@@ -18,8 +18,8 @@
             @auth
                 <p>something</p>
             @else
-                <div class="col-md-4"></div>
-                <form action="{{ URL::to('/registration') }}" name="registration" class="col-md-4" method="post">
+                <div class="col-md-4 col-sm-2"></div>
+                <form action="{{ URL::to('/registration') }}" name="registration" class="col-md-4 col-sm-8" method="post">
                     @csrf
                     <p class="text-center"><b class="text-info">Please enter your credentials below</b></p>
                     <div class="form-group">
