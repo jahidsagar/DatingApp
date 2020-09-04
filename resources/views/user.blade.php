@@ -66,7 +66,7 @@
                             <th scope="col">Name</th>
                             <th scope="col">Gender</th>
                             <th scope="col">Age</th>
-                            <th scope="col">Distance</th>
+                            <th scope="col">Distance (Km)</th>
                             <th scope="col">Image</th>
                             <th scope="col">Liked</th>
                         </tr>
@@ -137,7 +137,7 @@
         $users[$i]['distance'] = $dis;
         if($users[$i]['distance'] <= 5 && $userId != $users[$i].id){
             $img = "storage\\"+$users[$i].id+".jpeg";
-            $('#usersTable').append("<tr ><td >"+$users[$i].name+"</td><td>"+$users[$i].gender+"</td><td>"+$users[$i].dob+"</td><td>"+$users[$i].distance+"</td><td><img src='"+ $img+"' class=\"img-thumbnail\" /></td><td><span class=\"glyphicon glyphicon-heart\" aria-hidden=\"true\" id='"+$users[$i].id+"'></span></td></tr>");
+            $('#usersTable').append("<tr ><td >"+$users[$i].name+"</td><td>"+$users[$i].gender+"</td><td>"+$users[$i].dob+"</td><td>"+$users[$i].distance.toFixed(2)+"</td><td><img src='"+ $img+"' class=\"img-thumbnail\" /></td><td><span class=\"glyphicon glyphicon-heart\" aria-hidden=\"true\" id='"+$users[$i].id+"'></span></td></tr>");
         }
     }
     $( "span.glyphicon" ).click(function(element) {
@@ -228,11 +228,17 @@
                 
             }
         });
+
+        // table search
+        $("#search").on("keyup", function() {
+            var value = $(this).val().toLowerCase();
+            $("#usersTable tr").filter(function() {
+            $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+            });
+        });
     });
-    // function hello(){
-    //     console.log('hi');
-    // }
-    // var m = setInterval('hello()', 1000);
+
+    // get like 
     function getLike(){
         $url = "{{ URL::to('/getmatch') }}";
         $_token = "<?php echo csrf_token() ?>";
@@ -264,7 +270,7 @@
             }
         });
     }
-    
+
     var m = setInterval('getLike()', 5000);
 </script>
 </html>

@@ -11,11 +11,18 @@
                 <li><a href="/">Register</a></li>
             @endif
             @auth
+                <li class="form-group">
+                    <input type="text" class="form-control navbar-btn" placeholder="Search..." id="search">
+                </li>
+                <li>&nbsp;</li>
+                <li>
                 <form action="{{ URL::to('/logout') }}" method="POST">
                     @csrf
                     <button type="submit" class="btn btn-danger navbar-btn">Log out</button>
                 </form>
+            </li>
             @endauth
         </ul>
+        
     </div>
 </nav>
