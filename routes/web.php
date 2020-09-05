@@ -35,7 +35,7 @@ Route::post('/logout',function(){
 Route::get('/user', 'DashboardController@dashboard')->middleware('auth');
 // user profile image upload, we don't user any db col 
 // just a single photo handel it simply by id
-Route::post('/image','DashboardController@imageUpload')->middleware('auth');
+Route::post('/imageupload','DashboardController@imageUpload')->middleware('auth');
 
 // ----------- LikeController
 // user like submission using jquery ajax
@@ -47,3 +47,11 @@ Route::get('/match', 'LikeController@getbyId');
 // finding all liked via ajax, it requests after
 // 5 seconds repeteadly
 Route::post('/getmatch','LikeController@getMatch')->middleware('auth');
+
+//create symlink , call once
+Route::get('/linkstorage', function () {
+    File::link(storage_path('app/public'), public_path('storage'));
+    
+    $exitCode = Artisan::call('storage:link', [] );
+    echo $exitCode; // 0 exit code for no errors.
+});

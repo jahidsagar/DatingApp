@@ -45,7 +45,7 @@
         $dis = getDistanceFromLatLonInKm($userLatitude,$userLongitude,$users[$i].latitude,$users[$i].longitude)
         $users[$i]['distance'] = $dis;
         if($users[$i]['distance'] <= 5 && $userId != $users[$i].id){
-            $img = "storage\\"+$users[$i].id+".jpeg";
+            $img = "{{ asset('image') }}/"+$users[$i].id+".jpeg?<?php echo time(); ?>";
             $('#usersTable').append("<tr ><td >"+$users[$i].name+"</td><td>"+$users[$i].gender+"</td><td>"+$users[$i].dob+"</td><td>"+$users[$i].distance.toFixed(2)+"</td><td><img src='"+ $img+"' class=\"img-thumbnail\" /></td><td><span class=\"glyphicon glyphicon-heart\" aria-hidden=\"true\" id='"+$users[$i].id+"'></span></td></tr>");
         }
     }

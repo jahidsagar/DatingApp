@@ -11,6 +11,9 @@
             .right {
                 float: right;
             }
+            .display{
+                display: none;
+            }
         }
     </style>
     <title>Welcome to Dating Site</title>
@@ -29,17 +32,17 @@
                 <h4 class="text-center text-success">{{ Session::get('image') }}</h4>
             @endif
             @error('userImage')
-                <h4 class="text-center text-success">{{ error('userImage') }}</h4>
+                <h4 class="text-center text-danger">Image must be JPEG & max size 1024Kb.</h4>
             @enderror
             <div class="col-md-4">
                 <?php
                 $link = auth::user()->id.".jpeg";
                 ?>
-                <img src="storage\{{$link}}" class="img-thumbnail" width="200" height="200"
+                <img src="{{ asset('image') }}/{{$link}}?<?php echo time()?>" class="img-thumbnail" width="200" height="200"
                     alt="please upload image">
                 {{-- <p>&nbsp;</p> --}}
                 <div class="card right" style="width: 18rem;">
-                    <form action="{{ URL::to('/image') }}" method="post" enctype="multipart/form-data">
+                    <form action="{{ URL::to('/imageupload') }}" class="display" method="post" enctype="multipart/form-data">
                         @csrf
                         <div class="form-group">
                             <label for="userImage">Upload image</label>
